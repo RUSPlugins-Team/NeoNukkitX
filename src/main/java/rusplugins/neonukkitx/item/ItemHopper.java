@@ -1,0 +1,22 @@
+package rusplugins.neonukkitx.item;
+
+import rusplugins.neonukkitx.block.Block;
+
+/**
+ * Created by CreeperFace on 13.5.2017.
+ */
+public class ItemHopper extends Item {
+
+    public ItemHopper() {
+        this(0);
+    }
+
+    public ItemHopper(Integer meta) {
+        this(meta, 1);
+    }
+
+    public ItemHopper(Integer meta, int count) {
+        super(HOPPER, 0, count, "Hopper");
+        this.block = Block.get(HOPPER_BLOCK);
+    }
+}

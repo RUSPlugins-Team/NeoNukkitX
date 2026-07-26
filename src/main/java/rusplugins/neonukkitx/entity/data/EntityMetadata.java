@@ -1,0 +1,141 @@
+package rusplugins.neonukkitx.entity.data;
+
+import rusplugins.neonukkitx.item.Item;
+import rusplugins.neonukkitx.math.Vector3;
+import rusplugins.neonukkitx.math.Vector3f;
+import rusplugins.neonukkitx.nbt.tag.CompoundTag;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+
+import java.util.Map;
+import java.util.TreeMap;
+
+/**
+ * @author MagicDroidX
+ * Nukkit Project
+ */
+public class EntityMetadata {
+
+    private final Int2ObjectMap<EntityData> map;
+
+    public EntityMetadata() {
+        this.map = new Int2ObjectOpenHashMap<>();
+    }
+
+    private EntityMetadata(Int2ObjectMap<EntityData> map) {
+        this.map = map;
+    }
+
+    public EntityData get(int id) {
+        return this.getOrDefault(id, null);
+    }
+
+    public EntityData getOrDefault(int id, EntityData defaultValue) {
+        try {
+            return this.map.getOrDefault(id, defaultValue).setId(id);
+        } catch (Exception e) {
+            if (defaultValue != null) {
+                return defaultValue.setId(id);
+            }
+            return null;
+        }
+    }
+
+    public boolean exists(int id) {
+        return this.map.containsKey(id);
+    }
+
+    public EntityMetadata put(EntityData data) {
+        this.map.put(data.getId(), data);
+        return this;
+    }
+
+    public EntityData remove(int id) {
+        return this.map.remove(id);
+    }
+
+    public int getByte(int id) {
+        return (int) this.getOrDefault(id, new ByteEntityData(id, 0)).getData() & 0xff;
+    }
+
+    public int getShort(int id) {
+        return (int) this.getOrDefault(id, new ShortEntityData(id, 0)).getData();
+    }
+
+    public int getInt(int id) {
+        return (int) this.getOrDefault(id, new IntEntityData(id, 0)).getData();
+    }
+
+    public long getLong(int id) {
+        return (Long) this.getOrDefault(id, new LongEntityData(id, 0)).getData();
+    }
+
+    public float getFloat(int id) {
+        return (float) this.getOrDefault(id, new FloatEntityData(id, 0)).getData();
+    }
+
+    public boolean getBoolean(int id) {
+        return this.getByte(id) == 1;
+    }
+
+    public CompoundTag getNBT(int id) {
+        return (CompoundTag) this.getOrDefault(id, new NBTEntityData(id, new CompoundTag())).getData();
+    }
+
+    public String getString(int id) {
+        return (String) this.getOrDefault(id, new StringEntityData(id, "")).getData();
+    }
+
+    public Vector3 getPosition(int id) {
+        return (Vector3) this.getOrDefault(id, new IntPositionEntityData(id, new Vector3())).getData();
+    }
+
+    public Vector3f getFloatPosition(int id) {
+        return (Vector3f) this.getOrDefault(id, new Vector3fEntityData(id, new Vector3f())).getData();
+    }
+
+    public EntityMetadata putByte(int id, int value) {
+        return this.put(new ByteEntityData(id, value));
+    }
+
+    public EntityMetadata putShort(int id, int value) {
+        return this.put(new ShortEntityData(id, value));
+    }
+
+    public EntityMetadata putInt(int id, int value) {
+        return this.put(new IntEntityData(id, value));
+    }
+
+    public EntityMetadata putLong(int id, long value) {
+        return this.put(new LongEntityData(id, value));
+    }
+
+    public EntityMetadata putFloat(int id, float value) {
+        return this.put(new FloatEntityData(id, value));
+    }
+
+    public EntityMetadata putBoolean(int id, boolean value) {
+        return this.putByte(id, value ? 1 : 0);
+    }
+
+    public EntityMetadata putNBT(int id, CompoundTag tag) {
+        return this.put(new NBTEntityData(id, tag));
+    }
+
+    @Deprecated
+    public EntityMetadata putSlot(int id, Item value) {
+        return this.put(new NBTEntityData(id, value.getNamedTag()));
+    }
+
+    public EntityMetadata putString(int id, String value) {
+        return this.put(new StringEntityData(id, value));
+    }
+
+    public Map<Integer, EntityData> getMap() {
+        return new TreeMap<>(this.map); // Ordered
+    }
+
+    public EntityMetadata clone() {
+        return new EntityMetadata(new Int2ObjectOpenHashMap<>(this.map));
+    }
+}

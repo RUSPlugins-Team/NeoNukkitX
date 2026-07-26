@@ -1,0 +1,19 @@
+package rusplugins.neonukkitx.item;
+
+import rusplugins.neonukkitx.block.Block;
+
+public class ItemDoorSpruce extends Item {
+
+    public ItemDoorSpruce() {
+        this(0, 1);
+    }
+
+    public ItemDoorSpruce(Integer meta) {
+        this(meta, 1);
+    }
+
+    public ItemDoorSpruce(Integer meta, int count) {
+        super(SPRUCE_DOOR, 0, count, "Spruce Door");
+        this.block = Block.get(SPRUCE_DOOR_BLOCK);
+    }
+}

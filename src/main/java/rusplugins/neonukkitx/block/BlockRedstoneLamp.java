@@ -1,0 +1,81 @@
+package rusplugins.neonukkitx.block;
+
+import rusplugins.neonukkitx.Player;
+import rusplugins.neonukkitx.event.redstone.RedstoneUpdateEvent;
+import rusplugins.neonukkitx.item.Item;
+import rusplugins.neonukkitx.item.ItemBlock;
+import rusplugins.neonukkitx.item.ItemTool;
+import rusplugins.neonukkitx.level.Level;
+import rusplugins.neonukkitx.math.BlockFace;
+import rusplugins.neonukkitx.utils.BlockColor;
+
+/**
+ * @author Nukkit Project Team
+ */
+public class BlockRedstoneLamp extends BlockSolid {
+
+    @Override
+    public String getName() {
+        return "Redstone Lamp";
+    }
+
+    @Override
+    public int getId() {
+        return REDSTONE_LAMP;
+    }
+
+    @Override
+    public double getHardness() {
+        return 0.3D;
+    }
+
+    @Override
+    public double getResistance() {
+        return 1.5D;
+    }
+
+    @Override
+    public int getToolType() {
+        return ItemTool.TYPE_PICKAXE;
+    }
+
+    @Override
+    public boolean place(Item item, Block block, Block target, BlockFace face, double fx, double fy, double fz, Player player) {
+        if (this.level.isBlockPowered(this)) {
+            this.level.setBlock(this, Block.get(LIT_REDSTONE_LAMP), false, true);
+        } else {
+            this.level.setBlock(this, this, false, true);
+        }
+        return true;
+    }
+
+    @Override
+    public int onUpdate(int type) {
+        if (type == Level.BLOCK_UPDATE_NORMAL || type == Level.BLOCK_UPDATE_REDSTONE) {
+            // Redstone event
+            RedstoneUpdateEvent ev = new RedstoneUpdateEvent(this);
+            getLevel().getServer().getPluginManager().callEvent(ev);
+            if (ev.isCancelled()) {
+                return 0;
+            }
+            if (this.level.isBlockPowered(this)) {
+                this.level.setBlock(this, Block.get(LIT_REDSTONE_LAMP), false, true);
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    @Override
+    public Item[] getDrops(Item item) {
+        return new Item[]{
+                new ItemBlock(Block.get(REDSTONE_LAMP))
+        };
+    }
+
+    @Override
+    public BlockColor getColor() {
+        return BlockColor.ORANGE_TERRACOTA_BLOCK_COLOR;
+    }
+}

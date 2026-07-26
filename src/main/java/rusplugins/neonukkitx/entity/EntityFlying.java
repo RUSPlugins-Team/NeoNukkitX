@@ -1,0 +1,12 @@
+package rusplugins.neonukkitx.entity;
+
+import rusplugins.neonukkitx.level.format.FullChunk;
+import rusplugins.neonukkitx.nbt.tag.CompoundTag;
+
+public abstract class EntityFlying extends BaseEntity {
+
+    public EntityFlying(FullChunk chunk, CompoundTag nbt) {
+        super(chunk, nbt);
+        this.noFallDamage = true;
+    }
+}

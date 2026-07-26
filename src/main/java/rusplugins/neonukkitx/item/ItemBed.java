@@ -1,0 +1,29 @@
+package rusplugins.neonukkitx.item;
+
+import rusplugins.neonukkitx.block.Block;
+import rusplugins.neonukkitx.utils.DyeColor;
+
+/**
+ * @author MagicDroidX
+ * Nukkit Project
+ */
+public class ItemBed extends Item {
+
+    public ItemBed() {
+        this(0, 1);
+    }
+
+    public ItemBed(Integer meta) {
+        this(meta, 1);
+    }
+
+    public ItemBed(Integer meta, int count) {
+        super(BED, meta, count, DyeColor.getByWoolData(meta).getName() + " Bed");
+        this.block = Block.get(BED_BLOCK);
+    }
+
+    @Override
+    public int getMaxStackSize() {
+        return 1;
+    }
+}

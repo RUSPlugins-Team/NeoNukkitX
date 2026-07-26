@@ -1,0 +1,54 @@
+package rusplugins.neonukkitx.entity.data;
+
+import rusplugins.neonukkitx.NeoNukkitX;
+import rusplugins.neonukkitx.Server;
+import rusplugins.neonukkitx.entity.Entity;
+import rusplugins.neonukkitx.math.Vector3f;
+
+/**
+ * @author MagicDroidX
+ * Nukkit Project
+ */
+public class Vector3fEntityData extends EntityData<Vector3f> {
+
+    public float x;
+    public float y;
+    public float z;
+
+    public Vector3fEntityData(int id, float x, float y, float z) {
+        super(id);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public Vector3fEntityData(int id, Vector3f pos) {
+        this(id, pos.x, pos.y, pos.z);
+    }
+
+    @Override
+    public Vector3f getData() {
+        return new Vector3f(x, y, z);
+    }
+
+    @Override
+    public void setData(Vector3f data) {
+        if (data != null) {
+            this.x = data.x;
+            this.y = data.y;
+            this.z = data.z;
+        } else if (NeoNukkitX.DEBUG > 1) {
+            Server.getInstance().getLogger().warning("Vector3fEntityData setData called with null. This was allowed but does not reset the value.", new Throwable(""));
+        }
+    }
+
+    @Override
+    public int getType() {
+        return Entity.DATA_TYPE_VECTOR3F;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ", " + z + ")";
+    }
+}

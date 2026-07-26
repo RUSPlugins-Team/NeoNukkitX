@@ -1,0 +1,64 @@
+package rusplugins.neonukkitx.entity.mob;
+
+import rusplugins.neonukkitx.entity.EntityArthropod;
+import rusplugins.neonukkitx.item.Item;
+import rusplugins.neonukkitx.level.format.FullChunk;
+import rusplugins.neonukkitx.nbt.tag.CompoundTag;
+import rusplugins.neonukkitx.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EntityCaveSpider extends EntityWalkingMob implements EntityArthropod {
+
+    public static final int NETWORK_ID = 40;
+
+    public EntityCaveSpider(FullChunk chunk, CompoundTag nbt) {
+        super(chunk, nbt);
+    }
+
+    @Override
+    public int getNetworkId() {
+        return NETWORK_ID;
+    }
+
+    @Override
+    public float getWidth() {
+        return 0.7f;
+    }
+
+    @Override
+    public float getHeight() {
+        return 0.5f;
+    }
+
+    @Override
+    public void initEntity() {
+        this.setMaxHealth(12);
+        super.initEntity();
+        this.setDataFlag(DATA_FLAGS_EXTENDED, DATA_FLAG_RENDER_WHEN_INVISIBLE, true);
+    }
+
+    @Override
+    public Item[] getDrops() {
+        List<Item> drops = new ArrayList<>();
+
+        drops.add(Item.get(Item.STRING, 0, Utils.rand(0, 2)));
+
+        for (int i = 0; i < (Utils.rand(0, 2) == 0 ? 1 : 0); i++) {
+            drops.add(Item.get(Item.SPIDER_EYE, 0, 1));
+        }
+
+        return drops.toArray(new Item[0]);
+    }
+
+    @Override
+    public int getKillExperience() {
+        return 5;
+    }
+
+    @Override
+    public String getName() {
+        return this.hasCustomName() ? this.getNameTag() : "Cave Spider";
+    }
+}

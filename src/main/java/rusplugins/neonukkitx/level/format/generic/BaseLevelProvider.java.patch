@@ -1,0 +1,20 @@
+--- a/BaseLevelProvider.java
++++ b/BaseLevelProvider.java
+@@ -320,12 +320,24 @@
+     @Override
+     public void saveChunks() {
++        int saved = 0;
++        int maxPerTick = 8; // Limit chunks saved per tick
+         synchronized (chunks) {
+             for (BaseFullChunk chunk : this.chunks.values()) {
+                 if (chunk.hasChanged()) {
+                     chunk.setChanged(false);
+                     this.saveChunk(chunk.getX(), chunk.getZ(), chunk);
++                    saved++;
++                    if (saved >= maxPerTick) {
++                        break; // Save remaining next tick
++                    }
+                 }
+             }
+         }
+     }

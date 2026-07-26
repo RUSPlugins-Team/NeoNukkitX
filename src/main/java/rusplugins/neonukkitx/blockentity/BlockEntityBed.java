@@ -1,0 +1,54 @@
+package rusplugins.neonukkitx.blockentity;
+
+import rusplugins.neonukkitx.item.Item;
+import rusplugins.neonukkitx.level.format.FullChunk;
+import rusplugins.neonukkitx.nbt.tag.CompoundTag;
+import rusplugins.neonukkitx.utils.DyeColor;
+
+/**
+ * Created by CreeperFace on 2.6.2017.
+ */
+public class BlockEntityBed extends BlockEntitySpawnable {
+
+    public int color;
+
+    public BlockEntityBed(FullChunk chunk, CompoundTag nbt) {
+        super(chunk, nbt);
+    }
+
+    @Override
+    protected void initBlockEntity() {
+        if (!this.namedTag.contains("color")) {
+            this.namedTag.putByte("color", 0);
+        }
+
+        this.color = this.namedTag.getByte("color");
+
+        super.initBlockEntity();
+    }
+
+    @Override
+    public boolean isBlockEntityValid() {
+        return level.getBlockIdAt(chunk, (int) x, (int) y, (int) z) == Item.BED_BLOCK;
+    }
+
+    @Override
+    public void saveNBT() {
+        super.saveNBT();
+        this.namedTag.putByte("color", this.color);
+    }
+
+    @Override
+    public CompoundTag getSpawnCompound() {
+        return new CompoundTag()
+                .putString("id", BlockEntity.BED)
+                .putInt("x", (int) this.x)
+                .putInt("y", (int) this.y)
+                .putInt("z", (int) this.z)
+                .putByte("color", this.color);
+    }
+
+    public DyeColor getDyeColor() {
+        return DyeColor.getByWoolData(color);
+    }
+}
