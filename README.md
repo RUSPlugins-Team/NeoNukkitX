@@ -398,6 +398,7 @@ These rules are non-negotiable in the NeoNukkitX codebase:
 # Clone the repository
 git clone https://github.com/RUSPlugins-Team/NeoNukkitX.git
 git clone https://github.com/NeoNukkitX-Intertainment/NeoNukkitX.git
+
 cd NeoNukkitX
 
 # Build the fat jar (via Gradle + ShadowJar)
@@ -423,7 +424,7 @@ This project is licensed under the **GNU Lesser General Public License v3.0 (LGP
 
 NeoNukkitX is owned, developed, and maintained by:
 
-- **🏢 [NeoNukkit Team LLC]([https://github.com/NeoNukkitX-Intertainment)**
+- **🏢 [NeoNukkitX-Intertainment]([https://github.com/NeoNukkitX-Intertainment)**
 - **🏛️ [RUSPlugins-Team LLC](https://github.com/RUSPlugins-Team) — Official Organization**
 
 ### Original Nukkit — Acknowledgments
