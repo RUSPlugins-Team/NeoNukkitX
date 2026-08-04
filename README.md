@@ -424,8 +424,8 @@ This project is licensed under the **GNU Lesser General Public License v3.0 (LGP
 
 NeoNukkitX is owned, developed, and maintained by:
 
-- **🏢 [NeoNukkitX-Intertainment]([https://github.com/NeoNukkitX-Intertainment)**
-- **🏛️ [RUSPlugins-Team LLC](https://github.com/RUSPlugins-Team) — Official Organization**
+- **🏢 [[NeoNukkitX-Intertainment]([https://github.com/NeoNukkitX-Intertainment)**
+- **🏛️ [RUSPlugins-Team LLC](https://github.com/RUSPlugins-Team)**
 
 ### Original Nukkit — Acknowledgments
 
