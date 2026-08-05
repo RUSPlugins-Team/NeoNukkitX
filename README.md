@@ -599,7 +599,7 @@ The default Gradle target produces a fully shaded `*.jar` in `build/libs/`.
 ### Headless / Docker
 ```bash
 # Skip the interactive EULA dialog
-java -jar nukkit.jar --accept-eula --language en
+java -jar NeoNukkitX-1.1.0.0.jar --accept-eula --language en
 ```
 
 ---
