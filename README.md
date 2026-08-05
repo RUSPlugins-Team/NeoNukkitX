@@ -11,7 +11,7 @@
 <p align="center">
   <a href="#-base-specifications"><img src="https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21"/></a>
   <a href="#-base-specifications"><img src="https://img.shields.io/badge/Gradle-8.5-02303A?style=for-the-badge&logo=gradle&logoColor=white" alt="Gradle 8.5"/></a>
-  <a href="#-project-stats"><img src="https://img.shields.io/badge/Version-1.0.0.0-blue?style=for-the-badge" alt="Version 1.1.0.0"/></a>
+  <a href="#-project-stats"><img src="https://img.shields.io/badge/Version-1.1.0.0-blue?style=for-the-badge" alt="Version 1.1.0.0"/></a>
   <a href="#-branding--identity"><img src="https://img.shields.io/badge/API-1.1.0-green?style=for-the-badge" alt="API 1.1.0"/></a>
   <a href="#-license"><img src="https://img.shields.io/badge/LICENSE-LGPL-blue?style=for-the-badge" alt="LGPL License"/></a>
   <a href="#-project-stats"><img src="https://img.shields.io/badge/STATUS-STABLE-brightgreen?style=for-the-badge" alt="Status Stable"/></a>
