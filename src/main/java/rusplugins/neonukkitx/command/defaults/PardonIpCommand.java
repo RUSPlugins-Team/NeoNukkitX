@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
 public class PardonIpCommand extends VanillaCommand {
 
     public PardonIpCommand(String name) {
-        super(name, "%nukkit.command.unban.ip.description", "%commands.unbanip.usage");
-        this.setPermission("nukkit.command.unban.ip");
+        super(name, "%neonukkitx.command.unban.ip.description", "%commands.unbanip.usage");
+        this.setPermission("neonukkitx.command.unban.ip");
         this.setAliases(new String[]{"unbanip", "unban-ip", "pardonip"});
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{

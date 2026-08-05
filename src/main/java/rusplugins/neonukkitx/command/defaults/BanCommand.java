@@ -15,8 +15,8 @@ import rusplugins.neonukkitx.lang.TranslationContainer;
 public class BanCommand extends VanillaCommand {
 
     public BanCommand(String name) {
-        super(name, "%nukkit.command.ban.player.description", "%commands.ban.usage");
-        this.setPermission("nukkit.command.ban.player");
+        super(name, "%neonukkitx.command.ban.player.description", "%commands.ban.usage");
+        this.setPermission("neonukkitx.command.ban.player");
         this.commandParameters.clear();
         this.commandParameters.put("default",
                 new CommandParameter[]{

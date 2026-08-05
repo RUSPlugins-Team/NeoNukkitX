@@ -23,8 +23,8 @@ import java.util.StringJoiner;
 public class KillCommand extends VanillaCommand {
 
     public KillCommand(String name) {
-        super(name, "%nukkit.command.kill.description", "%nukkit.command.kill.usage", new String[]{"suicide"});
-        this.setPermission("nukkit.command.kill.self;nukkit.command.kill.other");
+        super(name, "%neonukkitx.command.kill.description", "%neonukkitx.command.kill.usage", new String[]{"suicide"});
+        this.setPermission("neonukkitx.command.kill.self;neonukkitx.command.kill.other");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", true, CommandParamType.TARGET)
@@ -41,7 +41,7 @@ public class KillCommand extends VanillaCommand {
             return false;
         }
         if (args.length == 1) {
-            if (!sender.hasPermission("nukkit.command.kill.other")) {
+            if (!sender.hasPermission("neonukkitx.command.kill.other")) {
                 sender.sendMessage(new TranslationContainer(TextFormat.RED + "%commands.generic.permission"));
                 return true;
             }
@@ -73,7 +73,7 @@ public class KillCommand extends VanillaCommand {
                 String entities = joiner.toString();
                 sender.sendMessage(new TranslationContainer("commands.kill.successful", entities.isEmpty() ? "0" : entities));
             } else if (args[0].equals("@s")) {
-                if (!sender.hasPermission("nukkit.command.kill.self")) {
+                if (!sender.hasPermission("neonukkitx.command.kill.self")) {
                     sender.sendMessage(new TranslationContainer(TextFormat.RED + "%commands.generic.permission"));
                     return true;
                 }
@@ -90,7 +90,7 @@ public class KillCommand extends VanillaCommand {
                     sender.sendMessage(new TranslationContainer("commands.kill.successful", sender.getName()));
                 }
             } else if (args[0].equals("@a")) {
-                if (!sender.hasPermission("nukkit.command.kill.other")) {
+                if (!sender.hasPermission("neonukkitx.command.kill.other")) {
                     sender.sendMessage(new TranslationContainer(TextFormat.RED + "%commands.generic.permission"));
                     return true;
                 }
@@ -115,7 +115,7 @@ public class KillCommand extends VanillaCommand {
             }
             return true;
         } else if (sender instanceof Player) {
-            if (!sender.hasPermission("nukkit.command.kill.self")) {
+            if (!sender.hasPermission("neonukkitx.command.kill.self")) {
                 sender.sendMessage(new TranslationContainer(TextFormat.RED + "%commands.generic.permission"));
                 return true;
             }

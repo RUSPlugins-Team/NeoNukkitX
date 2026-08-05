@@ -27,8 +27,8 @@ public class ParticleCommand extends VanillaCommand {
             , "ink", "droplet", "enchantmenttable", "happyvillager", "angryvillager", "forcefield"};
 
     public ParticleCommand(String name) {
-        super(name, "%nukkit.command.particle.description", "%nukkit.command.particle.usage");
-        this.setPermission("nukkit.command.particle");
+        super(name, "%neonukkitx.command.particle.description", "%neonukkitx.command.particle.usage");
+        this.setPermission("neonukkitx.command.particle");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newEnum("effect", new CommandEnum("Particle", ENUM_VALUES)),

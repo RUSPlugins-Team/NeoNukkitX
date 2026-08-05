@@ -14,8 +14,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class MeCommand extends VanillaCommand {
 
     public MeCommand(String name) {
-        super(name, "%nukkit.command.me.description", "%nukkit.command.me.usage");
-        this.setPermission("nukkit.command.me");
+        super(name, "%neonukkitx.command.me.description", "%neonukkitx.command.me.usage");
+        this.setPermission("neonukkitx.command.me");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("message", CommandParamType.MESSAGE)

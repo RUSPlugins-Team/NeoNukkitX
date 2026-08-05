@@ -17,8 +17,8 @@ import java.util.Locale;
 public class SaveCommand extends VanillaCommand {
 
     public SaveCommand(String name) {
-        super(name, "%nukkit.command.save.description", "%commands.save.usage");
-        this.setPermission("nukkit.command.save.perform");
+        super(name, "%neonukkitx.command.save.description", "%commands.save.usage");
+        this.setPermission("neonukkitx.command.save.perform");
         this.setAliases(new String[]{"save-all"});
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{

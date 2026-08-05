@@ -45,7 +45,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.*;
 
 /**
- * <a href="https://github.com/CloudburstMC/Protocol/blob/6b48673067d5c0e60f5e0a5a7e889dbf2aafa1a1/bedrock/bedrock-common/src/main/java/com/nukkitx/protocol/bedrock/util/EncryptionUtils.java">...</a>
+ * @author NeoNukkitX Project & RUSPlugins-Team LLC
  */
 @UtilityClass
 public class EncryptionUtils {
@@ -59,21 +59,18 @@ public class EncryptionUtils {
     private static final AlgorithmConstraints ALGORITHM_CONSTRAINTS =
             new AlgorithmConstraints(ConstraintType.PERMIT, ALGORITHM_TYPE);
     private static final String DISCOVERY_ENDPOINT =
-            "https://client.discovery.minecraft-services.net/api/v1.0/discovery/MinecraftPE/builds/1.0.0.0";
+            "https://client.discovery.minecraft-services.net/api/v1.0/discovery/MinecraftPE/builds/1.1.0.0";
     private static final JSONParser JSON_PARSER = new JSONParser();
-    private static final Map<String, Object> DISCOVERY_DATA = getDiscoveryData();
-    private static final Map<String, Object> OPENID_CONFIGURATION = getOpenIdConfiguration();
-    private static final String JWKS_URL = getJwksUrl();
-    private static final String ISSUER = getIssuer();
-    private static final HttpsJwks JWKS = new HttpsJwks(JWKS_URL);
-    private static final HttpsJwksVerificationKeyResolver RESOLVER = new HttpsJwksVerificationKeyResolver(JWKS);
-    private static final JwtConsumer MOJANG_CONSUMER = new JwtConsumerBuilder()
-            .setVerificationKeyResolver(RESOLVER)
-            .setRequireExpirationTime()
-            .setRequireSubject()
-            .setExpectedAudience(true, "api://auth-minecraft-services/multiplayer")
-            .setExpectedIssuer(ISSUER)
-            .build();
+
+    private static Map<String, Object> DISCOVERY_DATA;
+    private static Map<String, Object> OPENID_CONFIGURATION;
+    private static String JWKS_URL;
+    private static String ISSUER;
+    private static HttpsJwks JWKS;
+    private static HttpsJwksVerificationKeyResolver RESOLVER;
+    private static JwtConsumer MOJANG_CONSUMER;
+    private static boolean OFFLINE_MODE = false;
+
     private static final JwtConsumer OFFLINE_CONSUMER = new JwtConsumerBuilder()
             .setSkipAllValidators()
             .setSkipSignatureVerification()
@@ -82,8 +79,6 @@ public class EncryptionUtils {
             .build();
 
     static {
-        // DO NOT REMOVE THIS
-        // Since Java 8u231, secp384r1 is deprecated and will throw an exception.
         String namedGroups = System.getProperty("jdk.tls.namedGroups");
         System.setProperty("jdk.tls.namedGroups", namedGroups == null || namedGroups.isEmpty() ? "secp384r1" : namedGroups + ", secp384r1");
 
@@ -94,6 +89,34 @@ public class EncryptionUtils {
         } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | InvalidKeySpecException e) {
             throw new AssertionError("Unable to initialize required encryption", e);
         }
+
+        try {
+            DISCOVERY_DATA = getDiscoveryData();
+            OPENID_CONFIGURATION = getOpenIdConfiguration();
+            JWKS_URL = getJwksUrl();
+            ISSUER = getIssuer();
+            JWKS = new HttpsJwks(JWKS_URL);
+            RESOLVER = new HttpsJwksVerificationKeyResolver(JWKS);
+            MOJANG_CONSUMER = new JwtConsumerBuilder()
+                    .setVerificationKeyResolver(RESOLVER)
+                    .setRequireExpirationTime()
+                    .setRequireSubject()
+                    .setExpectedAudience(true, "api://auth-minecraft-services/multiplayer")
+                    .setExpectedIssuer(ISSUER)
+                    .build();
+        } catch (Throwable t) {
+            OFFLINE_MODE = true;
+            DISCOVERY_DATA = null;
+            OPENID_CONFIGURATION = null;
+            JWKS_URL = null;
+            ISSUER = null;
+            JWKS = null;
+            RESOLVER = null;
+            MOJANG_CONSUMER = null;
+            try {
+                Server.getInstance().getLogger().warning("Xbox authentication services are unreachable. Server running in offline-compatible mode.");
+            } catch (Exception ignored) {}
+        }
     }
 
     private static Map<String, Object> getDiscoveryData() {
@@ -102,7 +125,6 @@ public class EncryptionUtils {
             try (InputStream stream = Files.newInputStream(Paths.get("discovery-cache.json"));
                  InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
                 Server.getInstance().getLogger().info("Using previously cached discovery data");
-                //noinspection unchecked
                 return (Map<String, Object>) JSON_PARSER.parse(reader);
             } catch (Exception ignore) {}
             throw new AssertionError("Unable to fetch discovery data from " + DISCOVERY_ENDPOINT);
@@ -152,7 +174,6 @@ public class EncryptionUtils {
             try (InputStream stream = Files.newInputStream(Paths.get("openid-cache.json"));
                  InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
                 Server.getInstance().getLogger().info("Using previously cached OpenID configuration");
-                //noinspection unchecked
                 return (Map<String, Object>) JSON_PARSER.parse(reader);
             } catch (Exception ignore) {}
             throw new AssertionError("Unable to fetch OpenID configuration from " + openIdConfigUrl);
@@ -181,23 +202,10 @@ public class EncryptionUtils {
         return issuer;
     }
 
-    /**
-     * Generate EC public key from base 64 encoded string
-     *
-     * @param b64 base 64 encoded key
-     * @return key generated
-     * @throws NoSuchAlgorithmException runtime does not support the EC key spec
-     * @throws InvalidKeySpecException  input does not conform with EC key spec
-     */
     public static ECPublicKey parseKey(String b64) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return (ECPublicKey) KeyFactory.getInstance("EC").generatePublic(new X509EncodedKeySpec(Base64.getDecoder().decode(b64)));
     }
 
-    /**
-     * Create EC key pair to be used for handshake and encryption
-     *
-     * @return EC KeyPair
-     */
     public static KeyPair createKeyPair() {
         return KEY_PAIR_GEN.generateKeyPair();
     }
@@ -242,7 +250,6 @@ public class EncryptionUtils {
             throws JoseException, NoSuchAlgorithmException, InvalidKeySpecException {
         switch (chain.size()) {
             case 1:
-                // offline / proxied
                 JsonWebSignature identity = new JsonWebSignature();
                 identity.setCompactSerialization(chain.get(0));
                 return new ChainValidationResult(false, identity.getUnverifiedPayload());
@@ -267,7 +274,6 @@ public class EncryptionUtils {
                         throw new IllegalStateException("Chain signature doesn't match content");
                     }
 
-                    // the second chain entry has to be signed by Mojang
                     if (i == 1 && !currentKey.equals(MOJANG_PUBLIC_KEY)) {
                         throw new IllegalStateException("The chain isn't signed by Mojang!");
                     }
@@ -283,25 +289,19 @@ public class EncryptionUtils {
     }
 
     public static ChainValidationResult validateToken(AuthType type, String token) throws InvalidJwtException, JoseException {
-        if (type == AuthType.FULL /*|| type == AuthType.GUEST*/) {
+        if (type == AuthType.FULL) {
+            if (OFFLINE_MODE || MOJANG_CONSUMER == null) {
+                throw new JoseException("Xbox authentication is unavailable (offline mode)");
+            }
             JwtContext context = MOJANG_CONSUMER.process(token);
             return new ChainValidationResult(true, context);
-        } else if (type == AuthType.SELF_SIGNED || type == AuthType.GUEST) { // No guests for now
+        } else if (type == AuthType.SELF_SIGNED || type == AuthType.GUEST) {
             JwtContext context = OFFLINE_CONSUMER.process(token);
             return new ChainValidationResult(false, context);
         }
         throw new JoseException("Unsupported AuthType: " + type);
     }
 
-    /**
-     * Generate the secret key used to encrypt the connection
-     *
-     * @param localPrivateKey local private key
-     * @param remotePublicKey remote public key
-     * @param token           token generated or received from the server
-     * @return secret key used to encrypt connection
-     * @throws InvalidKeyException keys provided are not EC spec
-     */
     public static SecretKey getSecretKey(PrivateKey localPrivateKey, PublicKey remotePublicKey, byte[] token) throws InvalidKeyException {
         byte[] sharedSecret = getEcdhSecret(localPrivateKey, remotePublicKey);
 
@@ -331,15 +331,6 @@ public class EncryptionUtils {
         return agreement.generateSecret();
     }
 
-    /**
-     * Create handshake JWS used in the ServerToClientHandshakePacket
-     * which completes the encryption handshake.
-     *
-     * @param serverKeyPair used to sign the JWT
-     * @param token         salt for the encryption handshake
-     * @return signed JWS object
-     * @throws JoseException invalid key pair provided
-     */
     public static String createHandshakeJwt(KeyPair serverKeyPair, byte[] token) throws JoseException {
         JsonWebSignature signature = new JsonWebSignature();
         signature.setAlgorithmHeaderValue(ALGORITHM_TYPE);
@@ -356,22 +347,12 @@ public class EncryptionUtils {
         return signature.getCompactSerialization();
     }
 
-    /**
-     * Generate 16 bytes of random data for the handshake token using a {@link SecureRandom}
-     *
-     * @return 16 byte token
-     */
     public static byte[] generateRandomToken() {
         byte[] token = new byte[16];
         SECURE_RANDOM.nextBytes(token);
         return token;
     }
 
-    /**
-     * Mojang's public key used to verify the JWT during login.
-     *
-     * @return Mojang's public EC key
-     */
     public static ECPublicKey getMojangPublicKey() {
         return MOJANG_PUBLIC_KEY;
     }
@@ -417,7 +398,6 @@ public class EncryptionUtils {
 
             try (InputStream stream = connection.getInputStream();
                  InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
-                //noinspection unchecked
                 return (Map<String, Object>) JSON_PARSER.parse(reader);
             }
         } catch (Exception ex) {

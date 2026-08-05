@@ -18,8 +18,8 @@ import java.util.Collections;
 public class ClearCommand extends VanillaCommand {
 
     public ClearCommand(String name) {
-        super(name, "%nukkit.command.clear.description", "%nukkit.command.clear.usage");
-        this.setPermission("nukkit.command.clear");
+        super(name, "%neonukkitx.command.clear.description", "%neonukkitx.command.clear.usage");
+        this.setPermission("neonukkitx.command.clear");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[0]);
         this.commandParameters.put("target", new CommandParameter[]{

@@ -133,6 +133,7 @@ public final class ChainValidationResult {
          * @deprecated v818: Use {@link #minecraftId} instead.
          */
         @Nullable
+    @Deprecated
         public final UUID identity;
         public final String xuid;
         public final @Nullable String titleId;

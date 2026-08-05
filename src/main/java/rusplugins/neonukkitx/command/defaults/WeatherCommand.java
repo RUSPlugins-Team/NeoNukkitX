@@ -16,8 +16,8 @@ import rusplugins.neonukkitx.level.Level;
 public class WeatherCommand extends VanillaCommand {
 
     public WeatherCommand(String name) {
-        super(name, "%nukkit.command.weather.description", "%commands.weather.usage");
-        this.setPermission("nukkit.command.weather");
+        super(name, "%neonukkitx.command.weather.description", "%commands.weather.usage");
+        this.setPermission("neonukkitx.command.weather");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newEnum("type", new CommandEnum("WeatherType", "clear", "rain", "thunder")),

@@ -23,8 +23,8 @@ import java.util.Locale;
 public class GiveCommand extends VanillaCommand {
 
     public GiveCommand(String name) {
-        super(name, "%nukkit.command.give.description", "%nukkit.command.give.usage");
-        this.setPermission("nukkit.command.give");
+        super(name, "%neonukkitx.command.give.description", "%neonukkitx.command.give.usage");
+        this.setPermission("neonukkitx.command.give");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", CommandParamType.TARGET),

@@ -16,8 +16,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class OpCommand extends VanillaCommand {
 
     public OpCommand(String name) {
-        super(name, "%nukkit.command.op.description", "%nukkit.command.op.usage");
-        this.setPermission("nukkit.command.op.give");
+        super(name, "%neonukkitx.command.op.description", "%neonukkitx.command.op.usage");
+        this.setPermission("neonukkitx.command.op.give");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", CommandParamType.TARGET)

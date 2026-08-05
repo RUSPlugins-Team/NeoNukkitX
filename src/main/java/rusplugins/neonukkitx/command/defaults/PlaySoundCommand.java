@@ -13,8 +13,8 @@ import rusplugins.neonukkitx.network.protocol.PlaySoundPacket;
 public class PlaySoundCommand extends VanillaCommand {
 
     public PlaySoundCommand(String name) {
-        super(name, "%nukkit.command.playsound.description", "%commands.playsound.usage");
-        this.setPermission("nukkit.command.playsound");
+        super(name, "%neonukkitx.command.playsound.description", "%commands.playsound.usage");
+        this.setPermission("neonukkitx.command.playsound");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 new CommandParameter("sound", CommandParamType.STRING, false),

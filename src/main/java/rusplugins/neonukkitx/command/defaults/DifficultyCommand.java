@@ -16,8 +16,8 @@ import rusplugins.neonukkitx.network.protocol.SetDifficultyPacket;
 public class DifficultyCommand extends VanillaCommand {
 
     public DifficultyCommand(String name) {
-        super(name, "%nukkit.command.difficulty.description", "%commands.difficulty.usage");
-        this.setPermission("nukkit.command.difficulty");
+        super(name, "%neonukkitx.command.difficulty.description", "%commands.difficulty.usage");
+        this.setPermission("neonukkitx.command.difficulty");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("difficulty", CommandParamType.INT)

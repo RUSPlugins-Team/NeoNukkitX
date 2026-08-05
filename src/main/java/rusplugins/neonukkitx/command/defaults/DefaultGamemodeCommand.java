@@ -17,8 +17,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class DefaultGamemodeCommand extends VanillaCommand {
 
     public DefaultGamemodeCommand(String name) {
-        super(name, "%nukkit.command.defaultgamemode.description", "%commands.defaultgamemode.usage");
-        this.setPermission("nukkit.command.defaultgamemode");
+        super(name, "%neonukkitx.command.defaultgamemode.description", "%commands.defaultgamemode.usage");
+        this.setPermission("neonukkitx.command.defaultgamemode");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("gameMode", CommandParamType.INT)

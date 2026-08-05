@@ -17,8 +17,8 @@ import java.util.Locale;
 public class BanListCommand extends VanillaCommand {
 
     public BanListCommand(String name) {
-        super(name, "%nukkit.command.banlist.description", "%commands.banlist.usage");
-        this.setPermission("nukkit.command.ban.list");
+        super(name, "%neonukkitx.command.banlist.description", "%commands.banlist.usage");
+        this.setPermission("neonukkitx.command.ban.list");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newEnum("type", true, new CommandEnum("BanListType", "ips", "players"))

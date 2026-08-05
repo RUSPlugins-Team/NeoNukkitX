@@ -14,8 +14,8 @@ import java.util.Map;
 public class PluginsCommand extends VanillaCommand {
 
     public PluginsCommand(String name) {
-        super(name, "%nukkit.command.plugins.description", "%nukkit.command.plugins.usage");
-        this.setPermission("nukkit.command.plugins");
+        super(name, "%neonukkitx.command.plugins.description", "%neonukkitx.command.plugins.usage");
+        this.setPermission("neonukkitx.command.plugins");
         this.setAliases(new String[]{"pl"});
         this.commandParameters.clear();
     }
@@ -41,6 +41,6 @@ public class PluginsCommand extends VanillaCommand {
             list.append(plugin.getDescription().getFullName());
         }
 
-        sender.sendMessage(new TranslationContainer("nukkit.command.plugins.success", String.valueOf(plugins.size()), list.toString()));
+        sender.sendMessage(new TranslationContainer("neonukkitx.command.plugins.success", String.valueOf(plugins.size()), list.toString()));
     }
 }

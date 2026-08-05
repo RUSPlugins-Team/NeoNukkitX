@@ -14,8 +14,8 @@ import java.util.*;
 public class GameruleCommand extends VanillaCommand {
 
     public GameruleCommand(String name) {
-        super(name, "%nukkit.command.gamerule.description", "%commands.gamerule.usage");
-        this.setPermission("nukkit.command.gamerule");
+        super(name, "%neonukkitx.command.gamerule.description", "%commands.gamerule.usage");
+        this.setPermission("neonukkitx.command.gamerule");
         this.commandParameters.clear();
 
         GameRules rules = GameRules.getDefault();

@@ -16,8 +16,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class DeopCommand extends VanillaCommand {
 
     public DeopCommand(String name) {
-        super(name, "%nukkit.command.deop.description", "%commands.deop.description");
-        this.setPermission("nukkit.command.op.take");
+        super(name, "%neonukkitx.command.deop.description", "%commands.deop.description");
+        this.setPermission("neonukkitx.command.op.take");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", CommandParamType.TARGET)

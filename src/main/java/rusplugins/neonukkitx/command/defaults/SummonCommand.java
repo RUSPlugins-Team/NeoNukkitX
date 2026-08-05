@@ -17,8 +17,8 @@ import java.util.List;
 public class SummonCommand extends VanillaCommand {
 
     public SummonCommand(String name) {
-        super(name, "%nukkit.command.summon.description", "%nukkit.command.summon.usage");
-        this.setPermission("nukkit.command.summon");
+        super(name, "%neonukkitx.command.summon.description", "%neonukkitx.command.summon.usage");
+        this.setPermission("neonukkitx.command.summon");
         this.commandParameters.clear();
         List<String> entityNames = new ArrayList<>();
         for (String key : AddEntityPacket.LEGACY_IDS.values()) {

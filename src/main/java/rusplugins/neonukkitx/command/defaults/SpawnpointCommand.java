@@ -19,8 +19,8 @@ import java.text.DecimalFormat;
 public class SpawnpointCommand extends VanillaCommand {
 
     public SpawnpointCommand(String name) {
-        super(name, "%nukkit.command.spawnpoint.description", "%commands.spawnpoint.usage");
-        this.setPermission("nukkit.command.spawnpoint");
+        super(name, "%neonukkitx.command.spawnpoint.description", "%commands.spawnpoint.usage");
+        this.setPermission("neonukkitx.command.spawnpoint");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", true, CommandParamType.TARGET),

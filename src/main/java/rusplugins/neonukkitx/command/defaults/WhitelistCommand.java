@@ -17,14 +17,14 @@ import java.util.Locale;
 public class WhitelistCommand extends VanillaCommand {
 
     public WhitelistCommand(String name) {
-        super(name, "%nukkit.command.whitelist.description", "%commands.whitelist.usage");
+        super(name, "%neonukkitx.command.whitelist.description", "%commands.whitelist.usage");
         this.setPermission(
-                "nukkit.command.whitelist.reload;" +
-                        "nukkit.command.whitelist.enable;" +
-                        "nukkit.command.whitelist.disable;" +
-                        "nukkit.command.whitelist.list;" +
-                        "nukkit.command.whitelist.add;" +
-                        "nukkit.command.whitelist.remove"
+                "neonukkitx.command.whitelist.reload;" +
+                        "neonukkitx.command.whitelist.enable;" +
+                        "neonukkitx.command.whitelist.disable;" +
+                        "neonukkitx.command.whitelist.list;" +
+                        "neonukkitx.command.whitelist.add;" +
+                        "neonukkitx.command.whitelist.remove"
         );
         this.commandParameters.clear();
         this.commandParameters.put("1arg", new CommandParameter[]{
@@ -109,7 +109,7 @@ public class WhitelistCommand extends VanillaCommand {
     }
 
     private static boolean badPerm(CommandSender sender, String perm) {
-        if (!sender.hasPermission("nukkit.command.whitelist." + perm)) {
+        if (!sender.hasPermission("neonukkitx.command.whitelist." + perm)) {
             sender.sendMessage(new TranslationContainer(TextFormat.RED + "%commands.generic.permission"));
 
             return true;

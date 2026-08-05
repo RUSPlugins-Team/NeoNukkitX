@@ -15,8 +15,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class SayCommand extends VanillaCommand {
 
     public SayCommand(String name) {
-        super(name, "%nukkit.command.say.description", "%commands.say.usage");
-        this.setPermission("nukkit.command.say");
+        super(name, "%neonukkitx.command.say.description", "%commands.say.usage");
+        this.setPermission("neonukkitx.command.say");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("message", CommandParamType.MESSAGE)

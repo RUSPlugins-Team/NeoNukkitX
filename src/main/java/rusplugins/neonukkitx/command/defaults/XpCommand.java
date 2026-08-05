@@ -14,8 +14,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class XpCommand extends VanillaCommand {
 
     public XpCommand(String name) {
-        super(name, "%nukkit.command.xp.description", "%commands.xp.usage");
-        this.setPermission("nukkit.command.xp");
+        super(name, "%neonukkitx.command.xp.description", "%commands.xp.usage");
+        this.setPermission("neonukkitx.command.xp");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 new CommandParameter("amount|level", CommandParamType.INT, false),

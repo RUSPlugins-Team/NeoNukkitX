@@ -12,8 +12,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class GarbageCollectorCommand extends VanillaCommand {
 
     public GarbageCollectorCommand(String name) {
-        super(name, "%nukkit.command.gc.description", "%nukkit.command.gc.usage");
-        this.setPermission("nukkit.command.gc");
+        super(name, "%neonukkitx.command.gc.description", "%neonukkitx.command.gc.usage");
+        this.setPermission("neonukkitx.command.gc");
         this.commandParameters.clear();
     }
 

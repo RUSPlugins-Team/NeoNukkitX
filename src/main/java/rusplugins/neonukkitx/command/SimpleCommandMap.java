@@ -254,7 +254,7 @@ public class SimpleCommandMap implements CommandMap {
             target.execute(sender, sentCommandLabel, args);
         } catch (Exception e) {
             sender.sendMessage(new TranslationContainer(TextFormat.RED + "%commands.generic.exception"));
-            this.server.getLogger().critical(this.server.getLanguage().translateString("nukkit.command.exception", cmdLine, target.toString(), Utils.getExceptionMessage(e)), e);
+            this.server.getLogger().critical(this.server.getLanguage().translateString("neonukkitx.command.exception", cmdLine, target.toString(), Utils.getExceptionMessage(e)), e);
         }
 
         return true;
@@ -284,7 +284,7 @@ public class SimpleCommandMap implements CommandMap {
             String alias = entry.getKey();
             List<String> commandStrings = entry.getValue();
             if (alias.contains(" ") || alias.contains(":")) {
-                this.server.getLogger().warning(this.server.getLanguage().translateString("nukkit.command.alias.illegal", alias));
+                this.server.getLogger().warning(this.server.getLanguage().translateString("neonukkitx.command.alias.illegal", alias));
                 continue;
             }
             List<String> targets = new ArrayList<>();
@@ -306,7 +306,7 @@ public class SimpleCommandMap implements CommandMap {
             }
 
             if (bad.length() > 0) {
-                this.server.getLogger().warning(this.server.getLanguage().translateString("nukkit.command.alias.notFound", new String[]{alias, bad.toString()}));
+                this.server.getLogger().warning(this.server.getLanguage().translateString("neonukkitx.command.alias.notFound", new String[]{alias, bad.toString()}));
                 continue;
             }
 

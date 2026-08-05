@@ -18,8 +18,8 @@ public class ConvertCommand extends VanillaCommand {
     private static final Set<String> CONVERSION_IN_PROGRESS = ConcurrentHashMap.newKeySet();
 
     public ConvertCommand(String name) {
-        super(name, "%nukkit.command.world.convert.description", "%nukkit.command.world.convert.usage");
-        this.setPermission("nukkit.command.world.convert");
+        super(name, "%neonukkitx.command.world.convert.description", "%neonukkitx.command.world.convert.usage");
+        this.setPermission("neonukkitx.command.world.convert");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("world", CommandParamType.STRING)

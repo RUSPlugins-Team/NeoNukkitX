@@ -18,8 +18,8 @@ import java.text.DecimalFormat;
 public class SetWorldSpawnCommand extends VanillaCommand {
 
     public SetWorldSpawnCommand(String name) {
-        super(name, "%nukkit.command.setworldspawn.description", "%commands.setworldspawn.usage");
-        this.setPermission("nukkit.command.setworldspawn");
+        super(name, "%neonukkitx.command.setworldspawn.description", "%commands.setworldspawn.usage");
+        this.setPermission("neonukkitx.command.setworldspawn");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("spawnPoint", true, CommandParamType.POSITION)

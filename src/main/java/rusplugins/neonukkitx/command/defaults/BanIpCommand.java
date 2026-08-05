@@ -25,8 +25,8 @@ import java.util.regex.Pattern;
 public class BanIpCommand extends VanillaCommand {
 
     public BanIpCommand(String name) {
-        super(name, "%nukkit.command.ban.ip.description", "%commands.banip.usage");
-        this.setPermission("nukkit.command.ban.ip");
+        super(name, "%neonukkitx.command.ban.ip.description", "%commands.banip.usage");
+        this.setPermission("neonukkitx.command.ban.ip");
         this.setAliases(new String[]{"banip"});
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{

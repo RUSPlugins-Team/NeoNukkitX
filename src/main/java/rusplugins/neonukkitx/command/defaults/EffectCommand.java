@@ -22,8 +22,8 @@ import java.util.Locale;
 public class EffectCommand extends VanillaCommand {
 
     public EffectCommand(String name) {
-        super(name, "%nukkit.command.effect.description", "%commands.effect.usage");
-        this.setPermission("nukkit.command.effect");
+        super(name, "%neonukkitx.command.effect.description", "%commands.effect.usage");
+        this.setPermission("neonukkitx.command.effect");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", CommandParamType.TARGET),

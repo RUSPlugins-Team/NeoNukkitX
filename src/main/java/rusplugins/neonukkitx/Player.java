@@ -3924,7 +3924,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
 
                 SetPlayerGameTypePacket setPlayerGameTypePacket = (SetPlayerGameTypePacket) packet;
                 if (setPlayerGameTypePacket.gamemode != this.gamemode) {
-                    if (!this.hasPermission("nukkit.command.gamemode")) {
+                    if (!this.hasPermission("neonukkitx.command.gamemode")) {
                         if (!this.isOp()) {
                             this.kick(PlayerKickEvent.Reason.INVALID_PACKET, "Invalid SetPlayerGameTypePacket", true);
                         }
@@ -4832,7 +4832,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                     return;
                 }
 
-                if (!this.hasPermission("nukkit.command.difficulty")) {
+                if (!this.hasPermission("neonukkitx.command.difficulty")) {
                     if (!this.isOp()) {
                         this.kick(PlayerKickEvent.Reason.INVALID_PACKET, "Invalid SetDifficultyPacket", true);
                     }
@@ -4861,7 +4861,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                     return;
                 }
 
-                if (!this.hasPermission("nukkit.command.defaultgamemode")) {
+                if (!this.hasPermission("neonukkitx.command.defaultgamemode")) {
                     if (!this.isOp()) {
                         this.kick(PlayerKickEvent.Reason.INVALID_PACKET, "Invalid SetDefaultGameTypePacket", true);
                     }
@@ -4881,7 +4881,7 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                     return;
                 }
 
-                if (!this.hasPermission("nukkit.command.gamerule")) {
+                if (!this.hasPermission("neonukkitx.command.gamerule")) {
                     if (!this.isOp()) {
                         this.kick(PlayerKickEvent.Reason.INVALID_PACKET, "Invalid SettingsCommandPacket", true);
                     }

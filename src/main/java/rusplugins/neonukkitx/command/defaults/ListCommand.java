@@ -11,8 +11,8 @@ import rusplugins.neonukkitx.lang.TranslationContainer;
 public class ListCommand extends VanillaCommand {
 
     public ListCommand(String name) {
-        super(name, "%nukkit.command.list.description", "%commands.players.usage");
-        this.setPermission("nukkit.command.list");
+        super(name, "%neonukkitx.command.list.description", "%commands.players.usage");
+        this.setPermission("neonukkitx.command.list");
         this.commandParameters.clear();
     }
 

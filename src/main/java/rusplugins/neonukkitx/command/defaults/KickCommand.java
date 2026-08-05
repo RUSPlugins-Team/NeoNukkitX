@@ -16,8 +16,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class KickCommand extends VanillaCommand {
 
     public KickCommand(String name) {
-        super(name, "%nukkit.command.kick.description", "%commands.kick.usage");
-        this.setPermission("nukkit.command.kick");
+        super(name, "%neonukkitx.command.kick.description", "%commands.kick.usage");
+        this.setPermission("neonukkitx.command.kick");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", CommandParamType.TARGET),

@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "rusplugins.neonukkitx"
-version = "1.0.0.0"
+version = "1.1.0.0"
 description = "NeoNukkitX - Nuclear powered server software for Minecraft Bedrock Edition"
 
 repositories {
@@ -22,6 +22,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.slf4j:slf4j-simple:2.0.16")
     api(libs.network)
     api(libs.epoll)
     api(libs.fastutil)

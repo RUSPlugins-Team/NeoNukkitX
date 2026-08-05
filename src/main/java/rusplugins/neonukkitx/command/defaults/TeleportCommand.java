@@ -18,8 +18,8 @@ import rusplugins.neonukkitx.utils.TextFormat;
 public class TeleportCommand extends VanillaCommand {
 
     public TeleportCommand(String name) {
-        super(name, "%nukkit.command.tp.description", "%commands.tp.usage");
-        this.setPermission("nukkit.command.teleport");
+        super(name, "%neonukkitx.command.tp.description", "%commands.tp.usage");
+        this.setPermission("neonukkitx.command.teleport");
         this.commandParameters.clear();
         this.commandParameters.put("->Player", new CommandParameter[]{
                 CommandParameter.newType("destination", CommandParamType.TARGET)

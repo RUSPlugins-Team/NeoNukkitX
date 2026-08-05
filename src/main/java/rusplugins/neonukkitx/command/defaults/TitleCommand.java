@@ -16,8 +16,8 @@ import java.util.Locale;
 public class TitleCommand extends VanillaCommand {
 
     public TitleCommand(String name) {
-        super(name, "%nukkit.command.title.description", "%nukkit.command.title.usage");
-        this.setPermission("nukkit.command.title");
+        super(name, "%neonukkitx.command.title.description", "%neonukkitx.command.title.usage");
+        this.setPermission("neonukkitx.command.title");
 
         this.commandParameters.clear();
         this.commandParameters.put("clear", new CommandParameter[]{
@@ -72,11 +72,11 @@ public class TitleCommand extends VanillaCommand {
             switch (args[1].toLowerCase(Locale.ROOT)) {
                 case "clear":
                     player.clearTitle();
-                    sender.sendMessage(new TranslationContainer("nukkit.command.title.clear", player.getName()));
+                    sender.sendMessage(new TranslationContainer("neonukkitx.command.title.clear", player.getName()));
                     break;
                 case "reset":
                     player.resetTitleSettings();
-                    sender.sendMessage(new TranslationContainer("nukkit.command.title.reset", player.getName()));
+                    sender.sendMessage(new TranslationContainer("neonukkitx.command.title.reset", player.getName()));
                     break;
                 default:
                     sender.sendMessage(new TranslationContainer("commands.generic.usage", this.usageMessage));
@@ -86,16 +86,16 @@ public class TitleCommand extends VanillaCommand {
             switch (args[1].toLowerCase(Locale.ROOT)) {
                 case "title":
                     player.sendTitle(args[2]);
-                    sender.sendMessage(new TranslationContainer("nukkit.command.title.title",
+                    sender.sendMessage(new TranslationContainer("neonukkitx.command.title.title",
                             TextFormat.clean(args[2]), player.getName()));
                     break;
                 case "subtitle":
                     player.setSubtitle(args[2]);
-                    sender.sendMessage(new TranslationContainer("nukkit.command.title.subtitle", TextFormat.clean(args[2]), player.getName()));
+                    sender.sendMessage(new TranslationContainer("neonukkitx.command.title.subtitle", TextFormat.clean(args[2]), player.getName()));
                     break;
                 case "actionbar":
                     player.sendActionBar(args[2]);
-                    sender.sendMessage(new TranslationContainer("nukkit.command.title.actionbar", TextFormat.clean(args[2]), player.getName()));
+                    sender.sendMessage(new TranslationContainer("neonukkitx.command.title.actionbar", TextFormat.clean(args[2]), player.getName()));
                     break;
                 default:
                     sender.sendMessage(new TranslationContainer("commands.generic.usage", this.usageMessage));
@@ -107,10 +107,10 @@ public class TitleCommand extends VanillaCommand {
                     /*player.setTitleAnimationTimes(Integer.valueOf(args[2]), //fadeIn
                             Integer.valueOf(args[3]), //stay
                             Integer.valueOf(args[4])); //fadeOut*/
-                    sender.sendMessage(new TranslationContainer("nukkit.command.title.times.success",
+                    sender.sendMessage(new TranslationContainer("neonukkitx.command.title.times.success",
                             args[2], args[3], args[4], player.getName()));
                 } catch (NumberFormatException exception) {
-                    sender.sendMessage(new TranslationContainer(TextFormat.RED + "%nukkit.command.title.times.fail"));
+                    sender.sendMessage(new TranslationContainer(TextFormat.RED + "%neonukkitx.command.title.times.fail"));
                 }
             } else {
                 sender.sendMessage(new TranslationContainer("commands.generic.usage", this.usageMessage));

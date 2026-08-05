@@ -11,8 +11,8 @@ import rusplugins.neonukkitx.lang.TranslationContainer;
 public class StopCommand extends VanillaCommand {
 
     public StopCommand(String name) {
-        super(name, "%nukkit.command.stop.description", "%commands.stop.usage");
-        this.setPermission("nukkit.command.stop");
+        super(name, "%neonukkitx.command.stop.description", "%commands.stop.usage");
+        this.setPermission("neonukkitx.command.stop");
         this.commandParameters.clear();
     }
 

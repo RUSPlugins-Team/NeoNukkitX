@@ -19,8 +19,8 @@ import java.util.Locale;
 public class EnchantCommand extends VanillaCommand {
 
     public EnchantCommand(String name) {
-        super(name, "%nukkit.command.enchant.description", "%commands.enchant.usage");
-        this.setPermission("nukkit.command.enchant");
+        super(name, "%neonukkitx.command.enchant.description", "%commands.enchant.usage");
+        this.setPermission("neonukkitx.command.enchant");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
                 CommandParameter.newType("player", CommandParamType.TARGET),
